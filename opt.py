@@ -12,7 +12,7 @@ def config_parser(cmd=None):
                         help='add timestamp to dir')
     parser.add_argument("--datadir", type=str, default='./data/llff/fern',
                         help='input data directory')
-    parser.add_argument("--wikiartdir", type=str, default='./data/WikiArt',
+    parser.add_argument("--wikiartdir", type=str, default='./data/styles',
                         help='input data directory')
     parser.add_argument("--progress_refresh_rate", type=int, default=10,
                         help='how many iterations to show psnrs or iters')

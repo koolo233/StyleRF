@@ -1,0 +1,9 @@
+tqdm==4.66.1
+scikit-image==0.21.0
+opencv-python==4.8.0.76
+configargparse==1.7
+lpips==0.1.4
+imageio-ffmpeg==0.4.9
+kornia==0.7.0
+lpips==0.1.4
+tensorboard==2.14.1

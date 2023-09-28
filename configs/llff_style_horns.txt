@@ -1,7 +1,7 @@
 dataset_name = llff
-datadir = ./data/llff/trex
-ckpt = ./log_feature/trex/trex.th
-expname = trex
+datadir = ./data/llff/horns
+ckpt = ./log_feature/horns/horns.th
+expname = horns
 basedir = ./log_style
 
 nSamples = 300

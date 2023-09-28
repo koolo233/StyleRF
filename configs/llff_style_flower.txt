@@ -1,7 +1,7 @@
 dataset_name = llff
-datadir = ./data/llff/trex
-ckpt = ./log_feature/trex/trex.th
-expname = trex
+datadir = ./data/llff/flower
+ckpt = ./log_feature/flower/flower.th
+expname = flower
 basedir = ./log_style
 
 nSamples = 300

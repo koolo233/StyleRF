@@ -1,21 +1,38 @@
 # [*CVPR 2023*] StyleRF: Zero-shot 3D Style Transfer of Neural Radiance Fields
-## [Project page](https://kunhao-liu.github.io/StyleRF/) |  [Paper](https://arxiv.org/abs/2303.10598)
-
-This repository contains a pytorch implementation for the paper: [StyleRF: Zero-shot 3D Style Transfer of Neural Radiance Fields](https://arxiv.org/abs/2303.10598). StyleRF is an innovative 3D style transfer technique that achieves superior 3D stylization quality with precise geometry reconstruction and it can generalize to various new styles in a zero-shot manner. 
-
-![teaser](https://kunhao-liu.github.io/StyleRF/resources/teaser.png)
+## [Project page](https://kunhao-liu.github.io/StyleRF/)
 
 ---
 ## Installation
-> Tested on Ubuntu 20.04 + Pytorch 1.12.1
 
-Install environment:
-```
+```commandline
 conda create -n StyleRF python=3.9
 conda activate StyleRF
-pip install torch torchvision
-pip install tqdm scikit-image opencv-python configargparse lpips imageio-ffmpeg kornia lpips tensorboard
+pip install torch==1.12.1+cu116 torchvision==0.13.1+cu116 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu116
+pip install -r requirements.txt
 ```
+
+## TODO List
+
+- [ ] llff - trex - 0~140 styles
+- [ ] llff - horns - 0~140 styles
+- [ ] llff - flower - 0~140 styles
+- [ ] llff - fern - 0~140 styles
+- [ ] llff - orchids - 0~140 styles
+- [ ] llff - fortress - 0~140 styles
+- [ ] llff - leaves - 0~140 styles
+- [ ] llff - room - 0~140 styles
+
+## cmdline
+
+### training
+
+
+### output
+```commandline
+bash ./scripts/output.sh -i {GPU_Id} -d {scene}
+```
+
+`scene`: `trex`, `horns`, and `flower`.
 
 ## Datasets
 Please put the datasets in `./data`. You can put the datasets elsewhere if you modify the corresponding paths in the configs.

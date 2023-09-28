@@ -10,7 +10,8 @@ class Encoder(nn.Module):
         super().__init__()
 
         #pretrained vgg19
-        vgg19 = models.vgg19(weights='DEFAULT').features
+        # vgg19 = models.vgg19(weights='DEFAULT').features
+        vgg19 = models.vgg19().features
 
         self.relu1_1 = vgg19[:2]
         self.relu2_1 = vgg19[2:7]
