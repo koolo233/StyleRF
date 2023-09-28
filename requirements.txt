@@ -7,3 +7,4 @@ imageio-ffmpeg==0.4.9
 kornia==0.7.0
 lpips==0.1.4
 tensorboard==2.14.1
+plyfile==1.0.1

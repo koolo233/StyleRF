@@ -232,133 +232,133 @@ def convert_sdf_samples_to_ply(
 
 
 # Point cloud operations
-import pytorch3d
-import pytorch3d.transforms as transforms
-from pytorch3d.structures import Pointclouds
-from pytorch3d.renderer import (
-    look_at_view_transform,
-    FoVOrthographicCameras, 
-    PointsRasterizationSettings,
-    PointsRenderer,
-    PointsRasterizer,
-    AlphaCompositor,
-)
-import imageio
-
-def construct_points_coordinates(rays, depth):
-    '''
-    Construct points' coordinates of a point cloud, every point corresponds to 
-        a point on one ray with specified depth.
-
-    Args:
-        rays: [n_rays, 6]
-        depth: [n_rays] 
-    
-    Return:
-        point_cloud: [n_rays, 3]
-    '''
-    rays_o, rays_d = rays[:, :3], rays[:, 3:6]
-
-    points_coordinates = rays_o + rays_d * depth[...,None]
-
-    return points_coordinates
-
-def plot_point_cloud(points, rgbs, prtx=''):
-    '''
-    Args:
-        points: coodinates of points [n, 3]
-        rgbs: color of points [n, 3]
-    '''
-
-    point_cloud = Pointclouds(points=[points], features=[rgbs])
-
-    images = []
-    for degree in range(0,60,2):
-
-        R, T = look_at_view_transform(20, 10, degree)
-        cameras = FoVOrthographicCameras(device='cuda', R=R, T=T, znear=0.01)
-
-        raster_settings = PointsRasterizationSettings(
-            image_size=512, 
-            radius = 0.003,
-            points_per_pixel = 10
-        )
-
-        rasterizer = PointsRasterizer(cameras=cameras, raster_settings=raster_settings)
-        renderer = PointsRenderer(
-            rasterizer=rasterizer,
-            compositor=AlphaCompositor()
-        )
-        
-        image = renderer(point_cloud).squeeze()
-        image = (image.detach().cpu().numpy() * 255).astype('uint8')
-        images.append(image)
-
-        # imageio.imwrite(f'./visualization/{prtx}pointcloud_{degree:02d}.png', image)
-
-    imageio.mimwrite(f'./visualization/{prtx}pointcloud_video.mp4', np.stack(images), fps=10, quality=8)
-
-def knn_loss(p1, f1, p2, f2, thres=0.0005):
-    '''
-    Args:
-        p1, p2: points [p1,3] [p2,3]
-        f1, f2: features [p1,c] [p2,c]
-        thres: if dist > thres then the two points are not adjacent
-    '''
-    dists, idx, _ = pytorch3d.ops.knn_points(p1[None,...], p2[None,...], K=1)
-    # [N=1, P1, K=1]
-
-    match_feature = f2[idx.squeeze()] # [p1, C]
-
-    square_err = torch.sum((f1 - match_feature)**2, dim=-1) # [p1]
-
-    return torch.masked_select(square_err, dists.squeeze()<thres).mean()
-
-
-def random_rotate_rays(rays, ds_rays, depth, max_degree=0.2, device='cuda'):
-    '''
-    random rotate a batch of rays around their main view point.
-
-    Args:
-        rays: [n_rays, 6]
-        ds_rays: [n_rays/16, 6]
-        depth: [n_rays] 
-    
-    Return:
-        rotate_rays: [n_rays, 6]
-    '''
-    mean_ray = torch.mean(rays, dim=0) #[6]
-    mean_depth = torch.mean(depth) #[1]
-    main_view_point = mean_ray[:3] + mean_depth * mean_ray[3:] #[3]
-
-    # construct transformation
-    t_forward = transforms.Translate(*(-main_view_point), device=device)
-    t_back = transforms.Translate(*main_view_point, device=device)
-
-    axis = torch.nn.functional.normalize(torch.rand((3,), device=device), dim=0)
-    angle = torch.rand((1,), device=device) * max_degree
-
-    R = transforms.axis_angle_to_matrix(axis*angle)
-    rotation = transforms.Rotate(R, device=device)
-
-    transform = t_forward.compose(rotation).compose(t_back)
-
-    rays_o = transform.transform_points(rays[:,:3])
-    rays_d = transform.transform_points(rays[:,3:])
-
-    ds_rays_o = transform.transform_points(ds_rays[:,:3])
-    ds_rays_d = transform.transform_points(ds_rays[:,3:])
-
-    return torch.cat([rays_o, rays_d], dim=-1), torch.cat([ds_rays_o, ds_rays_d], dim=-1)
-
-
-def get_checkerboard(fg, n=8):
-    B, _, H, W = fg.shape
-    colors = torch.rand(2, B, 3, 1, 1, 1, 1, dtype=fg.dtype, device=fg.device)
-    h = H // n
-    w = W // n
-    bg = torch.ones(B, 3, n, h, n, w, dtype=fg.dtype, device=fg.device) * colors[0]
-    bg[:, :, ::2, :, 1::2] = colors[1]
-    bg[:, :, 1::2, :, ::2] = colors[1]
-    bg = bg.view(B, 3, H, W)
-    return bg
+# import pytorch3d
+# import pytorch3d.transforms as transforms
+# from pytorch3d.structures import Pointclouds
+# from pytorch3d.renderer import (
+#     look_at_view_transform,
+#     FoVOrthographicCameras,
+#     PointsRasterizationSettings,
+#     PointsRenderer,
+#     PointsRasterizer,
+#     AlphaCompositor,
+# )
+# import imageio
+#
+# def construct_points_coordinates(rays, depth):
+#     '''
+#     Construct points' coordinates of a point cloud, every point corresponds to
+#         a point on one ray with specified depth.
+#
+#     Args:
+#         rays: [n_rays, 6]
+#         depth: [n_rays]
+#
+#     Return:
+#         point_cloud: [n_rays, 3]
+#     '''
+#     rays_o, rays_d = rays[:, :3], rays[:, 3:6]
+#
+#     points_coordinates = rays_o + rays_d * depth[...,None]
+#
+#     return points_coordinates
+#
+# def plot_point_cloud(points, rgbs, prtx=''):
+#     '''
+#     Args:
+#         points: coodinates of points [n, 3]
+#         rgbs: color of points [n, 3]
+#     '''
+#
+#     point_cloud = Pointclouds(points=[points], features=[rgbs])
+#
+#     images = []
+#     for degree in range(0,60,2):
+#
+#         R, T = look_at_view_transform(20, 10, degree)
+#         cameras = FoVOrthographicCameras(device='cuda', R=R, T=T, znear=0.01)
+#
+#         raster_settings = PointsRasterizationSettings(
+#             image_size=512,
+#             radius = 0.003,
+#             points_per_pixel = 10
+#         )
+#
+#         rasterizer = PointsRasterizer(cameras=cameras, raster_settings=raster_settings)
+#         renderer = PointsRenderer(
+#             rasterizer=rasterizer,
+#             compositor=AlphaCompositor()
+#         )
+#
+#         image = renderer(point_cloud).squeeze()
+#         image = (image.detach().cpu().numpy() * 255).astype('uint8')
+#         images.append(image)
+#
+#         # imageio.imwrite(f'./visualization/{prtx}pointcloud_{degree:02d}.png', image)
+#
+#     imageio.mimwrite(f'./visualization/{prtx}pointcloud_video.mp4', np.stack(images), fps=10, quality=8)
+#
+# def knn_loss(p1, f1, p2, f2, thres=0.0005):
+#     '''
+#     Args:
+#         p1, p2: points [p1,3] [p2,3]
+#         f1, f2: features [p1,c] [p2,c]
+#         thres: if dist > thres then the two points are not adjacent
+#     '''
+#     dists, idx, _ = pytorch3d.ops.knn_points(p1[None,...], p2[None,...], K=1)
+#     # [N=1, P1, K=1]
+#
+#     match_feature = f2[idx.squeeze()] # [p1, C]
+#
+#     square_err = torch.sum((f1 - match_feature)**2, dim=-1) # [p1]
+#
+#     return torch.masked_select(square_err, dists.squeeze()<thres).mean()
+#
+#
+# def random_rotate_rays(rays, ds_rays, depth, max_degree=0.2, device='cuda'):
+#     '''
+#     random rotate a batch of rays around their main view point.
+#
+#     Args:
+#         rays: [n_rays, 6]
+#         ds_rays: [n_rays/16, 6]
+#         depth: [n_rays]
+#
+#     Return:
+#         rotate_rays: [n_rays, 6]
+#     '''
+#     mean_ray = torch.mean(rays, dim=0) #[6]
+#     mean_depth = torch.mean(depth) #[1]
+#     main_view_point = mean_ray[:3] + mean_depth * mean_ray[3:] #[3]
+#
+#     # construct transformation
+#     t_forward = transforms.Translate(*(-main_view_point), device=device)
+#     t_back = transforms.Translate(*main_view_point, device=device)
+#
+#     axis = torch.nn.functional.normalize(torch.rand((3,), device=device), dim=0)
+#     angle = torch.rand((1,), device=device) * max_degree
+#
+#     R = transforms.axis_angle_to_matrix(axis*angle)
+#     rotation = transforms.Rotate(R, device=device)
+#
+#     transform = t_forward.compose(rotation).compose(t_back)
+#
+#     rays_o = transform.transform_points(rays[:,:3])
+#     rays_d = transform.transform_points(rays[:,3:])
+#
+#     ds_rays_o = transform.transform_points(ds_rays[:,:3])
+#     ds_rays_d = transform.transform_points(ds_rays[:,3:])
+#
+#     return torch.cat([rays_o, rays_d], dim=-1), torch.cat([ds_rays_o, ds_rays_d], dim=-1)
+#
+#
+# def get_checkerboard(fg, n=8):
+#     B, _, H, W = fg.shape
+#     colors = torch.rand(2, B, 3, 1, 1, 1, 1, dtype=fg.dtype, device=fg.device)
+#     h = H // n
+#     w = W // n
+#     bg = torch.ones(B, 3, n, h, n, w, dtype=fg.dtype, device=fg.device) * colors[0]
+#     bg[:, :, ::2, :, 1::2] = colors[1]
+#     bg[:, :, 1::2, :, ::2] = colors[1]
+#     bg = bg.view(B, 3, H, W)
+#     return bg
