@@ -13,9 +13,9 @@ pip install -r requirements.txt
 
 ## TODO List
 
-- [ ] llff - trex - 0~140 styles
-- [ ] llff - horns - 0~140 styles
-- [ ] llff - flower - 0~140 styles
+- [x] llff - trex - 0~140 styles
+- [x] llff - horns - 0~140 styles
+- [x] llff - flower - 0~140 styles
 - [ ] llff - fern - 0~140 styles
 - [ ] llff - orchids - 0~140 styles
 - [ ] llff - fortress - 0~140 styles
