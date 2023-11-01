@@ -11,6 +11,11 @@ pip install torch==1.12.1+cu116 torchvision==0.13.1+cu116 torchaudio==0.12.1 --e
 pip install -r requirements.txt
 ```
 
+4090 可能存在兼容性问题，尝试使用1.13或以上版本：
+```commandline
+pip install torch==1.13.1+cu117 torchvision==0.14.1+cu117 torchaudio==0.13.1 --extra-index-url https://download.pytorch.org/whl/cu117
+```
+
 ## TODO List
 
 - [x] llff - trex - 0~140 styles
@@ -21,6 +26,38 @@ pip install -r requirements.txt
 - [ ] llff - fortress - 0~140 styles
 - [ ] llff - leaves - 0~140 styles
 - [ ] llff - room - 0~140 styles
+
+
+### training and inference time
+| scene    | type                        | time |
+|----------|-----------------------------|------|
+| trex     | Feature grid training stage |      |
+| horns    | Feature grid training stage |      |
+| flower   | Feature grid training stage |      |
+| orchids  | Feature grid training stage |      |
+| fortress | Feature grid training stage |      |
+| leaves   | Feature grid training stage |      |
+| room     | Feature grid training stage |      |
+| fern     | Feature grid training stage |      |
+| trex     | Stylization training stage  |      |
+| horns    | Stylization training stage  |      |
+| flower   | Stylization training stage  |      |
+| orchids  | Stylization training stage  |      |
+| fortress | Stylization training stage  |      |
+| leaves   | Stylization training stage  |      |
+| room     | Stylization training stage  |      |
+| fern     | Stylization training stage  |      |
+| trex     | Inference                   |      |
+| horns    | Inference                   |      |
+| flower   | Inference                   |      |
+| orchids  | Inference                   |      |
+| fortress | Inference                   |      |
+| leaves   | Inference                   |      |
+| room     | Inference                   |      |
+| fern     | Inference                   |      |
+
+其中Inference以6个style的平均预测时间作为结果。
+
 
 ## cmdline
 
@@ -63,7 +100,7 @@ The rendered stylized images can then be found in the directory under the checkp
 > Current settings in `configs` are tested on one NVIDIA RTX A5000 Graphics Card with 24G memory. To reduce memory consumption, you can set `batch_size`, `chunk_size` or `patch_size` to a smaller number.
 
 We follow the following 3 steps of training:
-### 1. Train original TensoRF
+### 1. Train original TensoRF （VM-48）
 This step is for reconstructing the density field, which contains more precise geometry details compared to mesh-based methods. You can skip this step by directly downloading pre-trained checkpoints provided by [TensoRF checkpoints](https://1drv.ms/u/s!Ard0t_p4QWIMgQ2qSEAs7MUk8hVw?e=dc6hBm).
 
 The configs are stored in `configs/llff.txt` and `configs/nerf_synthetic.txt`. For the details of the settings, please also refer to [TensoRF](https://github.com/apchenstu/TensoRF). The checkpoints are stored in `./log` by default.
