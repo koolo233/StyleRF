@@ -29,32 +29,32 @@ pip install torch==1.13.1+cu117 torchvision==0.14.1+cu117 torchaudio==0.13.1 --e
 
 
 ### training and inference time
-| scene    | type                        | time |
-|----------|-----------------------------|------|
-| trex     | Feature grid training stage |      |
-| horns    | Feature grid training stage |      |
-| flower   | Feature grid training stage |      |
-| orchids  | Feature grid training stage |      |
-| fortress | Feature grid training stage |      |
-| leaves   | Feature grid training stage |      |
-| room     | Feature grid training stage |      |
-| fern     | Feature grid training stage |      |
-| trex     | Stylization training stage  |      |
-| horns    | Stylization training stage  |      |
-| flower   | Stylization training stage  |      |
-| orchids  | Stylization training stage  |      |
-| fortress | Stylization training stage  |      |
-| leaves   | Stylization training stage  |      |
-| room     | Stylization training stage  |      |
-| fern     | Stylization training stage  |      |
-| trex     | Inference                   |      |
-| horns    | Inference                   |      |
-| flower   | Inference                   |      |
-| orchids  | Inference                   |      |
-| fortress | Inference                   |      |
-| leaves   | Inference                   |      |
-| room     | Inference                   |      |
-| fern     | Inference                   |      |
+| scene    | type                        | time    |
+|----------|-----------------------------|---------|
+| trex     | Feature grid training stage |         |
+| horns    | Feature grid training stage |         |
+| flower   | Feature grid training stage |         |
+| orchids  | Feature grid training stage |         |
+| fortress | Feature grid training stage | 1:25:44 |
+| leaves   | Feature grid training stage | 1:21:47 |
+| room     | Feature grid training stage | 1:20:06 |
+| fern     | Feature grid training stage | 1:27:15 |
+| trex     | Stylization training stage  |         |
+| horns    | Stylization training stage  |         |
+| flower   | Stylization training stage  |         |
+| orchids  | Stylization training stage  |         |
+| fortress | Stylization training stage  |         |
+| leaves   | Stylization training stage  |         |
+| room     | Stylization training stage  |         |
+| fern     | Stylization training stage  | 2:48:29 |
+| trex     | Inference                   |         |
+| horns    | Inference                   |         |
+| flower   | Inference                   |         |
+| orchids  | Inference                   |         |
+| fortress | Inference                   |         |
+| leaves   | Inference                   |         |
+| room     | Inference                   |         |
+| fern     | Inference                   |         |
 
 其中Inference以6个style的平均预测时间作为结果。
 
