@@ -27,6 +27,31 @@ pip install torch==1.13.1+cu117 torchvision==0.14.1+cu117 torchaudio==0.13.1 --e
 - [ ] llff - leaves - 0~140 styles
 - [ ] llff - room - 0~140 styles
 
+- [ ] Feature grid training stage - trex
+- [ ] Feature grid training stage - horns
+- [ ] Feature grid training stage - flower
+- [ ] Feature grid training stage - orchids
+- [x] Feature grid training stage - fortress
+- [x] Feature grid training stage - leaves
+- [x] Feature grid training stage - room
+- [x] Feature grid training stage - fern
+- [ ] Stylization training stage - trex
+- [ ] Stylization training stage - horns
+- [ ] Stylization training stage - flower
+- [ ] Stylization training stage - orchids
+- [ ] Stylization training stage - fortress
+- [ ] Stylization training stage - leaves
+- [ ] Stylization training stage - room
+- [x] Stylization training stage - fern
+- [x] llff - trex - 3, 11, 45, 33, 119, 130
+- [x] llff - horns - 3, 11, 45, 33, 119, 130
+- [x] llff - flower - 3, 11, 45, 33, 119, 130
+- [ ] llff - fern - 3, 11, 45, 33, 119, 130
+- [ ] llff - orchids - 3, 11, 45, 33, 119, 130
+- [ ] llff - fortress - 3, 11, 45, 33, 119, 130
+- [ ] llff - leaves - 3, 11, 45, 33, 119, 130
+- [ ] llff - room - 3, 11, 45, 33, 119, 130
+
 
 ### training and inference time
 | scene    | type                        | time    |
