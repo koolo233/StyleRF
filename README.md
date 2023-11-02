@@ -35,10 +35,10 @@ pip install torch==1.13.1+cu117 torchvision==0.14.1+cu117 torchaudio==0.13.1 --e
 | horns    | Feature grid training stage |         |
 | flower   | Feature grid training stage |         |
 | orchids  | Feature grid training stage |         |
-| fortress | Feature grid training stage | 1:25:44 |
-| leaves   | Feature grid training stage | 1:21:47 |
-| room     | Feature grid training stage | 1:20:06 |
-| fern     | Feature grid training stage | 1:27:15 |
+| fortress | Feature grid training stage | 1:25:15 |
+| leaves   | Feature grid training stage | 1:21:08 |
+| room     | Feature grid training stage | 1:20:07 |
+| fern     | Feature grid training stage | 1:27:17 |
 | trex     | Stylization training stage  |         |
 | horns    | Stylization training stage  |         |
 | flower   | Stylization training stage  |         |
@@ -46,7 +46,7 @@ pip install torch==1.13.1+cu117 torchvision==0.14.1+cu117 torchaudio==0.13.1 --e
 | fortress | Stylization training stage  |         |
 | leaves   | Stylization training stage  |         |
 | room     | Stylization training stage  |         |
-| fern     | Stylization training stage  | 2:48:29 |
+| fern     | Stylization training stage  | 2:45:52 |
 | trex     | Inference                   |         |
 | horns    | Inference                   |         |
 | flower   | Inference                   |         |
