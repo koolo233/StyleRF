@@ -1,6 +1,6 @@
 dataset_name = llff
 datadir = ./data/llff/room
-ckpt = ./log_feature/leaves/room.th
+ckpt = ./log_feature/room/room.th
 expname = room
 basedir = ./log_style
 
