@@ -18,15 +18,6 @@ pip install torch==1.13.1+cu117 torchvision==0.14.1+cu117 torchaudio==0.13.1 --e
 
 ## TODO List
 
-- [x] llff - trex - 0~140 styles
-- [x] llff - horns - 0~140 styles
-- [x] llff - flower - 0~140 styles
-- [ ] llff - fern - 0~140 styles
-- [ ] llff - orchids - 0~140 styles
-- [ ] llff - fortress - 0~140 styles
-- [ ] llff - leaves - 0~140 styles
-- [ ] llff - room - 0~140 styles
-
 - [x] Feature grid training stage - trex
 - [x] Feature grid training stage - horns
 - [x] Feature grid training stage - flower
@@ -43,9 +34,9 @@ pip install torch==1.13.1+cu117 torchvision==0.14.1+cu117 torchaudio==0.13.1 --e
 - [x] Stylization training stage - leaves
 - [x] Stylization training stage - room
 - [x] Stylization training stage - fern
-- [ ] llff - trex - 3, 11, 45, 33, 119, 130
-- [ ] llff - horns - 3, 11, 45, 33, 119, 130
-- [ ] llff - flower - 3, 11, 45, 33, 119, 130
+- [x] llff - trex - 3, 11, 45, 33, 119, 130
+- [x] llff - horns - 3, 11, 45, 33, 119, 130
+- [x] llff - flower - 3, 11, 45, 33, 119, 130
 - [x] llff - fern - 3, 11, 45, 33, 119, 130
 - [x] llff - orchids - 3, 11, 45, 33, 119, 130
 - [x] llff - fortress - 3, 11, 45, 33, 119, 130
@@ -74,12 +65,12 @@ pip install torch==1.13.1+cu117 torchvision==0.14.1+cu117 torchaudio==0.13.1 --e
 | fern     | Stylization training stage  | 2:45:52     |
 | trex     | Inference                   |             |
 | horns    | Inference                   |             |
-| flower   | Inference                   |             |
-| orchids  | Inference                   |             |
-| fortress | Inference                   |             |
+| flower   | Inference                   | 123m24.456s |
+| orchids  | Inference                   | 135m54.908s |
+| fortress | Inference                   | 141m4.914s  |
 | leaves   | Inference                   | 119m51.735s |
 | room     | Inference                   | 112m8.493s  |
-| fern     | Inference                   |             |
+| fern     | Inference                   | 171m45.653s |
 
 其中Inference以6个style的平均预测时间作为结果。
 
