@@ -63,8 +63,8 @@ pip install torch==1.13.1+cu117 torchvision==0.14.1+cu117 torchaudio==0.13.1 --e
 | leaves   | Stylization training stage  | 2:18:52     |
 | room     | Stylization training stage  | 2:10:48     |
 | fern     | Stylization training stage  | 2:45:52     |
-| trex     | Inference                   |             |
-| horns    | Inference                   |             |
+| trex     | Inference                   | 108m43.409s |
+| horns    | Inference                   | 83m59.287s  |
 | flower   | Inference                   | 123m24.456s |
 | orchids  | Inference                   | 135m54.908s |
 | fortress | Inference                   | 141m4.914s  |
