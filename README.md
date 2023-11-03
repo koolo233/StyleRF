@@ -56,21 +56,21 @@ pip install torch==1.13.1+cu117 torchvision==0.14.1+cu117 torchaudio==0.13.1 --e
 ### training and inference time
 | scene    | type                        | time    |
 |----------|-----------------------------|---------|
-| trex     | Feature grid training stage |         |
-| horns    | Feature grid training stage |         |
-| flower   | Feature grid training stage |         |
-| orchids  | Feature grid training stage |         |
+| trex     | Feature grid training stage | 1:16:14 |
+| horns    | Feature grid training stage | 1:15:24 |
+| flower   | Feature grid training stage | 1:23:50 |
+| orchids  | Feature grid training stage | 1:22:36 |
 | fortress | Feature grid training stage | 1:25:15 |
 | leaves   | Feature grid training stage | 1:21:08 |
 | room     | Feature grid training stage | 1:20:07 |
 | fern     | Feature grid training stage | 1:27:17 |
-| trex     | Stylization training stage  |         |
-| horns    | Stylization training stage  |         |
-| flower   | Stylization training stage  |         |
-| orchids  | Stylization training stage  |         |
-| fortress | Stylization training stage  |         |
-| leaves   | Stylization training stage  |         |
-| room     | Stylization training stage  |         |
+| trex     | Stylization training stage  | 2:08:30 |
+| horns    | Stylization training stage  | 1:57:23 |
+| flower   | Stylization training stage  | 2:25:04 |
+| orchids  | Stylization training stage  | 2:21:56 |
+| fortress | Stylization training stage  | 2:32:54 |
+| leaves   | Stylization training stage  | 2:18:52 |
+| room     | Stylization training stage  | 2:10:48 |
 | fern     | Stylization training stage  | 2:45:52 |
 | trex     | Inference                   |         |
 | horns    | Inference                   |         |
